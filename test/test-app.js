@@ -22,4 +22,10 @@ describe('ng-widgets:app with grunt', function () {
       '.jshintrc'
     ]);
   });
+
+  it('creates the grunt config files', function() {
+    assert.file([
+      'grunt/ts.coffee'
+    ]);
+  });
 });
