@@ -39,9 +39,10 @@ var gruntHelpers = {
       saveDev: true
     });
 
-    this.fs.copy(
+    this.fs.copyTpl(
       this.templatePath('grunt/_ts.coffee'),
-      this.destinationPath('grunt/ts.coffee')
+      this.destinationPath('grunt/ts.coffee'),
+      this
     );
   }
 };

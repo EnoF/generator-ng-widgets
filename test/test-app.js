@@ -5,15 +5,19 @@ var assert = require('yeoman-generator').assert;
 var helpers = require('yeoman-generator').test;
 var os = require('os');
 
-describe('ng-widgets:app with grunt', function () {
-  before(function (done) {
+describe('ng-widgets:app with grunt', function() {
+  before(function(done) {
     helpers.run(path.join(__dirname, '../generators/app'))
-      .withOptions({ skipInstall: true })
-      .withPrompts({ buildSystem: 'grunt' })
+      .withOptions({
+        skipInstall: true
+      })
+      .withPrompts({
+        buildSystem: 'grunt'
+      })
       .on('end', done);
   });
 
-  it('creates files', function () {
+  it('creates files', function() {
     assert.file([
       'bower.json',
       'Gruntfile.js',
@@ -27,5 +31,41 @@ describe('ng-widgets:app with grunt', function () {
     assert.file([
       'grunt/ts.coffee'
     ]);
+  });
+});
+
+describe('grunt server folder', function() {
+  it('sets the file under the server directory by default', function(done) {
+    helpers.run(path.join(__dirname, '../generators/app'))
+      .withOptions({
+        skipInstall: true
+      })
+      .withPrompts({
+        buildSystem: 'grunt',
+        serverDir: 'server'
+      })
+      .on('end', function() {
+        assert.fileContent([
+          ['grunt/ts.coffee', /'server\/\*\*\/\*.ts'/]
+        ]);
+        done();
+      });
+  });
+
+  it('sets the file under a custom provided directory', function(done) {
+    helpers.run(path.join(__dirname, '../generators/app'))
+      .withOptions({
+        skipInstall: true
+      })
+      .withPrompts({
+        buildSystem: 'grunt',
+        serverDir: 'app/server'
+      })
+      .on('end', function() {
+        assert.fileContent([
+          ['grunt/ts.coffee', /'app\/server\/\*\*\/\*.ts'/]
+        ]);
+        done();
+      });
   });
 });

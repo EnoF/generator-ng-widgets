@@ -23,6 +23,11 @@ module.exports = yeoman.generators.Base.extend({
       message: 'What build system would you like to use?',
       choices: ['grunt', 'gulp'],
       default: 'grunt'
+    }, {
+      type: 'input',
+      name: 'serverDir',
+      message: 'What is the directory for your server files?',
+      default: 'server'
     }];
 
     this.prompt(prompts, function(props) {

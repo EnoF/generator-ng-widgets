@@ -29,6 +29,7 @@ module.exports = (grunt, options) ->
       'app/widgets/**/src/**/*.ts'
       'app/widgets/**/*.ts'
       'app/app.ts'
+      '<%= props.serverDir %>/**/*.ts'
     ]
     reference: 'app/reference.ts'
     outDir: '.tmp/js'
