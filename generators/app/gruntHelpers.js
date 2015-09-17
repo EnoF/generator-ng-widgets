@@ -18,7 +18,7 @@ var gruntHelpers = {
       'grunt-express',
       'grunt-karma',
       'grunt-package-modules',
-      'grunt-simple-mocha',
+      'grunt-mocha-cli',
       'grunt-ts',
       'grunt-tslint',
       'karma',
@@ -30,6 +30,7 @@ var gruntHelpers = {
       'karma-sinon-chai',
       'load-grunt-config',
       'mocha',
+      'mocha-better-spec-reporter',
       'phantomjs',
       'should',
       'sinon',
@@ -43,6 +44,22 @@ var gruntHelpers = {
       this.templatePath('grunt/_ts.coffee'),
       this.destinationPath('grunt/ts.coffee'),
       this
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('grunt/_test.coffee'),
+      this.destinationPath('grunt/test.coffee'),
+      this
+    );
+
+    this.fs.copy(
+      this.templatePath('_karma.conf.js'),
+      this.destinationPath('test/karma.conf.js')
+    );
+
+    this.fs.copy(
+      this.templatePath('_test.spec.template'),
+      this.destinationPath('test/template/test.spec.template')
     );
   }
 };

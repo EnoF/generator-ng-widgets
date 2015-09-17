@@ -21,7 +21,8 @@ describe('server files are optional', function() {
 
   it('should not search for server files to compile', function() {
     assert.noFileContent([
-      ['grunt/ts.coffee', /'server\/\*\*\/\*.ts'/]
+      ['grunt/ts.coffee', /'server\/\*\*\/\*.ts'/],
+      ['grunt/test.coffee', /mochaCli/]
     ]);
   });
 });
