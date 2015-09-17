@@ -24,6 +24,13 @@ module.exports = yeoman.generators.Base.extend({
       choices: ['grunt', 'gulp'],
       default: 'grunt'
     }, {
+      type: 'confirm',
+      name: 'hasServerFiles',
+      message: 'Does your app contain server files?'
+    }, {
+      when: function(answers) {
+        return answers.hasServerFiles;
+      },
       type: 'input',
       name: 'serverDir',
       message: 'What is the directory for your server files?',
