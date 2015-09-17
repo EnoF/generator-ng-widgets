@@ -3,6 +3,7 @@ var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
 var gruntHelpers = require('./gruntHelpers');
+var gulpHelpers = require('./gulpHelpers.js');
 
 module.exports = yeoman.generators.Base.extend({
   prompting: function() {
@@ -60,41 +61,7 @@ module.exports = yeoman.generators.Base.extend({
       if (this.props.buildSystem === 'grunt') {
         gruntHelpers.setupGrunt.apply(this);
       } else {
-        this.fs.copy(
-          this.templatePath('_gulpfile.js'),
-          this.destinationPath('gulpfile.js')
-        );
-        this.npmInstall([
-          'gulp',
-          'gulp-angular-templatecache',
-          'gulp-clean',
-          'gulp-compressor',
-          'gulp-concat',
-          'gulp-cssmin',
-          'gulp-less',
-          'gulp-uglify',
-          'gulp-load-plugins',
-          'gulp-live-server',
-          'gulp-karma',
-          'gulp-mocha',
-          'gulp-typescript',
-          'gulp-tslint',
-          'karma',
-          'karma-chai',
-          'karma-coverage',
-          'karma-mocha',
-          'karma-mocha-reporter',
-          'karma-phantomjs-launcher',
-          'karma-sinon-chai',
-          'mocha',
-          'phantomjs',
-          'should',
-          'sinon',
-          'tslint',
-          'yadda'
-        ], {
-          saveDev: true
-        });
+        gulpHelpers.setupGulp.apply(this);
       }
       this.bowerInstall([
         'angular-route',
