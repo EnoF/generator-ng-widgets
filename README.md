@@ -35,6 +35,22 @@ Finally, initiate the generator:
 yo ng-widgets
 ```
 
+### Features
+
+* Project setup with Grunt
+  * karma (browser tests)
+  * mocha (server tests)
+  * typescript
+  * optional server setup
+
+### Roadmap
+
+* Project setup with Gulp
+* rest-io scaffolding
+* widget scaffolding
+* model scaffolding
+* angular base module scaffolding
+
 ### Getting To Know Yeoman
 
 Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.

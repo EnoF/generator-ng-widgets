@@ -5,31 +5,24 @@ var assert = require('yeoman-generator').assert;
 var helpers = require('yeoman-generator').test;
 var os = require('os');
 
-describe('ng-widgets:app with grunt', function() {
+describe('server files are optional', function() {
   before(function(done) {
     helpers.run(path.join(__dirname, '../generators/app'))
       .withOptions({
         skipInstall: true
       })
       .withPrompts({
-        buildSystem: 'grunt'
+        buildSystem: 'grunt',
+        hasServerFiles: false,
+        serverDir: 'server'
       })
       .on('end', done);
   });
 
-  it('creates files', function() {
-    assert.file([
-      'bower.json',
-      'Gruntfile.js',
-      'package.json',
-      '.editorconfig',
-      '.jshintrc'
-    ]);
-  });
-
-  it('creates the grunt config files', function() {
-    assert.file([
-      'grunt/ts.coffee'
+  it('should not search for server files to compile', function() {
+    assert.noFileContent([
+      ['grunt/ts.coffee', /'server\/\*\*\/\*.ts'/],
+      ['grunt/test.coffee', /mochaCli/]
     ]);
   });
 });
