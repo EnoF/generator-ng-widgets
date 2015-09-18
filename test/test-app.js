@@ -33,3 +33,28 @@ describe('ng-widgets:app with grunt', function() {
     ]);
   });
 });
+
+describe('ng-widgets:app with gulp', function () {
+  before(function (done) {
+    helpers.run(path.join(__dirname, '../generators/app'))
+      .withOptions({skipInstall: true})
+      .withPrompts({buildSystem: 'gulp'})
+      .on('end', done);
+  });
+
+  it('creates files', function () {
+    assert.file([
+      'bower.json',
+      'gulpfile.js',
+      'package.json',
+      '.editorconfig',
+      '.jshintrc'
+    ]);
+  });
+
+  it('creates the gulp config files', function () {
+    assert.file([
+      'gulp/ts.coffee'
+    ])
+  });
+});

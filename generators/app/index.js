@@ -3,6 +3,7 @@ var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
 var gruntHelpers = require('./gruntHelpers');
+var gulpHelpers = require('./gulpHelpers.js');
 
 module.exports = yeoman.generators.Base.extend({
   prompting: function() {
@@ -60,7 +61,7 @@ module.exports = yeoman.generators.Base.extend({
       if (this.props.buildSystem === 'grunt') {
         gruntHelpers.setupGrunt.apply(this);
       } else {
-        // Copy and install Gulp files
+        gulpHelpers.setupGulp.apply(this);
       }
       this.bowerInstall([
         'angular-route',
