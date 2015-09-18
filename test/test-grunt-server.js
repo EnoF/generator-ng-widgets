@@ -13,6 +13,7 @@ describe('grunt server folder', function() {
       })
       .withPrompts({
         buildSystem: 'grunt',
+        projectName: 'testingApp',
         serverDir: 'server'
       })
       .on('end', function() {
@@ -30,6 +31,7 @@ describe('grunt server folder', function() {
       })
       .withPrompts({
         buildSystem: 'grunt',
+        projectName: 'testingApp',
         serverDir: 'app/server'
       })
       .on('end', function() {

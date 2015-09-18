@@ -14,6 +14,7 @@ describe('testing with grunt', function() {
       .withPrompts({
         buildSystem: 'grunt',
         hasServerFiles: true,
+        projectName: 'testingApp',
         serverDir: 'server'
       })
       .on('end', done);

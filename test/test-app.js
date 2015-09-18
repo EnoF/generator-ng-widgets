@@ -12,7 +12,8 @@ describe('ng-widgets:app with grunt', function() {
         skipInstall: true
       })
       .withPrompts({
-        buildSystem: 'grunt'
+        buildSystem: 'grunt',
+        projectName: 'testingApp'
       })
       .on('end', done);
   });
@@ -32,13 +33,24 @@ describe('ng-widgets:app with grunt', function() {
       'grunt/ts.coffee'
     ]);
   });
+
+  it('creates the common web files', function () {
+    assert.fileContent([
+      ['app/index.html', '<title>testingApp</title>'],
+      ['app/index.html', 'ng-app="testing-app"'],
+      ['app/index.html', '<testing-app></testing-app>']
+    ]);
+  });
 });
 
 describe('ng-widgets:app with gulp', function () {
   before(function (done) {
     helpers.run(path.join(__dirname, '../generators/app'))
       .withOptions({skipInstall: true})
-      .withPrompts({buildSystem: 'gulp'})
+      .withPrompts({
+        buildSystem: 'gulp',
+        projectName: 'testingApp'
+      })
       .on('end', done);
   });
 

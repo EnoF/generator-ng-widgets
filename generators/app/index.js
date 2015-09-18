@@ -57,6 +57,11 @@ module.exports = yeoman.generators.Base.extend({
         this.templatePath('_bower.json'),
         this.destinationPath('bower.json'),
         this);
+      this.fs.copyTpl(
+        this.templatePath('_index.html'),
+        this.destinationPath('app/index.html'),
+        this
+      );
       // Grunt configs
       if (this.props.buildSystem === 'grunt') {
         gruntHelpers.setupGrunt.apply(this);
@@ -92,3 +97,10 @@ module.exports = yeoman.generators.Base.extend({
     this.installDependencies();
   }
 });
+
+String.prototype.toSnakeCase = function() {
+  return this.replace(/ (.)|[A-Z]/g, function(capitalLetter, firstLetter) {
+    var letter = firstLetter || capitalLetter.toLowerCase();
+    return '-' + letter;
+  });
+};

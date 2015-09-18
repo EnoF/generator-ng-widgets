@@ -12,6 +12,7 @@ describe('gulp server folder', function () {
       })
       .withPrompts({
         buildSystem: 'gulp',
+        projectName: 'testingApp',
         serverDir: 'server'
       })
       .on('end', function () {
@@ -29,6 +30,7 @@ describe('gulp server folder', function () {
       })
       .withPrompts({
         buildSystem: 'gulp',
+        projectName: 'testingApp',
         serverDir: 'app/server'
       })
       .on('end', function () {
