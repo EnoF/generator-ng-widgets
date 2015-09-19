@@ -32,6 +32,9 @@ describe('ng-widgets:app with grunt', function() {
     assert.file([
       'grunt/ts.coffee'
     ]);
+    assert.fileContent([
+      ['grunt/ngtemplate.coffee', 'module: \'testing-app\'']
+    ]);
   });
 
   it('creates the common web files', function () {

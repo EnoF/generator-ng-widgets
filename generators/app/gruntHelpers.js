@@ -61,6 +61,12 @@ var gruntHelpers = {
       this.templatePath('_test.spec.template'),
       this.destinationPath('test/template/test.spec.template')
     );
+
+    this.fs.copyTpl(
+      this.templatePath('grunt/_ngtemplate.coffee'),
+      this.destinationPath('grunt/ngtemplate.coffee'),
+      this
+    );
   }
 };
 
