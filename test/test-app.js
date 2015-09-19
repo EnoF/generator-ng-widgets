@@ -38,7 +38,8 @@ describe('ng-widgets:app with grunt', function() {
     assert.fileContent([
       ['app/index.html', '<title>testingApp</title>'],
       ['app/index.html', 'ng-app="testing-app"'],
-      ['app/index.html', '<testing-app></testing-app>']
+      ['app/index.html', '<testing-app></testing-app>'],
+      ['app/app.ts', 'angular.module(\'testing-app\', [\'testing-app.testing-app\'])']
     ]);
   });
 });

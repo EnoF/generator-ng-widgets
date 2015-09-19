@@ -48,7 +48,7 @@ module.exports = yeoman.generators.Base.extend({
 
   writing: {
     app: function() {
-      this.projectName = this.props.projectName;
+      this.projectName = this.props.projectName.toSnakeCase();
       this.package = this.fs.copyTpl(
         this.templatePath('_package.json'),
         this.destinationPath('package.json'),
@@ -62,6 +62,14 @@ module.exports = yeoman.generators.Base.extend({
         this.destinationPath('app/index.html'),
         this
       );
+      this.fs.copyTpl(
+        this.templatePath('app/_app.ts'),
+        this.destinationPath('app/app.ts'),
+        this
+      );
+    },
+
+    buildSystem: function() {
       // Grunt configs
       if (this.props.buildSystem === 'grunt') {
         gruntHelpers.setupGrunt.apply(this);
