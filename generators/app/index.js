@@ -49,6 +49,11 @@ module.exports = yeoman.generators.Base.extend({
   writing: {
     app: function() {
       this.projectName = this.props.projectName.toSnakeCase();
+      this.projectModule = this.props.projectName.toCamelCase();
+      this.widgetName = this.projectName;
+      this.widgetModule = this.projectModule.toCapital();
+      this.directiveName = this.projectModule;
+      this.isMainModule = true;
       this.package = this.fs.copyTpl(
         this.templatePath('_package.json'),
         this.destinationPath('package.json'),
@@ -65,6 +70,26 @@ module.exports = yeoman.generators.Base.extend({
       this.fs.copyTpl(
         this.templatePath('app/_app.ts'),
         this.destinationPath('app/app.ts'),
+        this
+      );
+      this.fs.copyTpl(
+        this.templatePath('app/widgets/_module.ts'),
+        this.destinationPath('app/widgets/' + this.widgetName + '/' + this.widgetName + '.ts'),
+        this
+      );
+      this.fs.copyTpl(
+        this.templatePath('app/widgets/_viewModel.ts'),
+        this.destinationPath('app/widgets/' + this.widgetName + '/src/' + this.widgetName + '-vm.ts'),
+        this
+      );
+      this.fs.copyTpl(
+        this.templatePath('app/widgets/_directive.ts'),
+        this.destinationPath('app/widgets/' + this.widgetName + '/src/' + this.widgetName + '.ts'),
+        this
+      );
+      this.fs.copyTpl(
+        this.templatePath('app/widgets/_view.html'),
+        this.destinationPath('app/widgets/' + this.widgetName + '/src/' + this.widgetName + '.html'),
         this
       );
     },
@@ -105,6 +130,18 @@ module.exports = yeoman.generators.Base.extend({
     this.installDependencies();
   }
 });
+
+String.prototype.toCapital = function() {
+  return this.toCamelCase().replace(/(.)/, function(firstLetter) {
+    return firstLetter.toUpperCase();
+  });
+};
+
+String.prototype.toCamelCase = function() {
+  return this.replace(/[ |-](.)/g, function(match, firstLetter) {
+    return firstLetter.toUpperCase();
+  });
+};
 
 String.prototype.toSnakeCase = function() {
   return this.replace(/ (.)|[A-Z]/g, function(capitalLetter, firstLetter) {

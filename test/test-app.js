@@ -42,7 +42,11 @@ describe('ng-widgets:app with grunt', function() {
       ['app/index.html', '<title>testingApp</title>'],
       ['app/index.html', 'ng-app="testing-app"'],
       ['app/index.html', '<testing-app></testing-app>'],
-      ['app/app.ts', 'angular.module(\'testing-app\', [\'testing-app.testing-app\'])']
+      ['app/app.ts', 'angular.module(\'testing-app\', [\'testing-app.testing-app\'])'],
+      ['app/widgets/testing-app/testing-app.ts', 'angular.module(\'testing-app.testing-app\', [])'],
+      ['app/widgets/testing-app/src/testing-app-vm.ts', 'export class TestingAppVM'],
+      ['app/widgets/testing-app/src/testing-app.ts', 'export function testingApp()'],
+      ['app/widgets/testing-app/src/testing-app.html', '<h1>testing-app</h1>']
     ]);
   });
 });
