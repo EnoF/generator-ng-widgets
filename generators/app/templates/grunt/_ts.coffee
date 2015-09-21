@@ -1,40 +1,22 @@
 module.exports = (grunt, options) ->
-  ts__all:
+  browserify:
     src: [
-      'typings/tsd.d.ts'
-      'app/core/models/serializable.ts'
-      'app/core/models/**/*.ts'
-      'app/core/dao/dao.ts'
-      'app/core/dao/**/*.ts'
-      'app/core/modules/**/*.ts'
-      'app/core/widgets/**/src/**/*.ts'
-      'app/core/widgets/**/*.ts'
-      '!app/core/widgets/**/test/**'
-      'app/widgets/**/src/**/*.ts'
-      'app/widgets/**/*.ts'
-      '!app/widgets/**/test/**'
-      'app/app.ts'
+      '.tmp/js/app/**/*.js'
     ]
-    reference: 'app/reference.ts'
-    out: '.tmp/js/build.js'
-  ts__seperate:
+    dest: '.tmp/js/build.js'
+  ts:
     src: [
       'typings/tsd.d.ts'
       'test/**/*.ts'
-      'app/core/models/**/*.ts'
-      'app/core/dao/**/*.ts'
-      'app/core/modules/**/*.ts'
-      'app/core/widgets/**/src/**/*.ts'
-      'app/core/widgets/**/*.ts'
-      'app/widgets/**/src/**/*.ts'
-      'app/widgets/**/*.ts'
-      'app/app.ts'
+      'app/**/*.ts'
       <% if (props.hasServerFiles) { %>
       '<%= props.serverDir %>/**/*.ts'
       <% } %>
     ]
     reference: 'app/reference.ts'
     outDir: '.tmp/js'
+    options:
+      module: 'commonjs'
   tslint:
     options:
       configuration: grunt.file.readJSON 'tslint.json'

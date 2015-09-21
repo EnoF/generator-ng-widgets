@@ -13,11 +13,12 @@ describe('grunt server folder', function() {
       })
       .withPrompts({
         buildSystem: 'grunt',
+        projectName: 'testingApp',
         serverDir: 'server'
       })
       .on('end', function() {
         assert.fileContent([
-          ['grunt/ts.coffee', /'server\/\*\*\/\*.ts'/]
+          ['grunt/ts-tasks.coffee', /'server\/\*\*\/\*.ts'/]
         ]);
         done();
       });
@@ -30,11 +31,12 @@ describe('grunt server folder', function() {
       })
       .withPrompts({
         buildSystem: 'grunt',
+        projectName: 'testingApp',
         serverDir: 'app/server'
       })
       .on('end', function() {
         assert.fileContent([
-          ['grunt/ts.coffee', /'app\/server\/\*\*\/\*.ts'/]
+          ['grunt/ts-tasks.coffee', /'app\/server\/\*\*\/\*.ts'/]
         ]);
         done();
       });

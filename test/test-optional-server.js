@@ -14,6 +14,7 @@ describe('server files are optional in grunt', function() {
       .withPrompts({
         buildSystem: 'grunt',
         hasServerFiles: false,
+        projectName: 'testingApp',
         serverDir: 'server'
       })
       .on('end', done);
@@ -21,8 +22,8 @@ describe('server files are optional in grunt', function() {
 
   it('should not search for server files to compile', function() {
     assert.noFileContent([
-      ['grunt/ts.coffee', /'server\/\*\*\/\*.ts'/],
-      ['grunt/test.coffee', /mochaCli/]
+      ['grunt/ts-tasks.coffee', /'server\/\*\*\/\*.ts'/],
+      ['grunt/test-tasks.coffee', /mochaCli/]
     ]);
   });
 });
@@ -36,6 +37,7 @@ describe('server files are optional in gulp', function() {
       .withPrompts({
         buildSystem: 'gulp',
         hasServerFiles: false,
+        projectName: 'testingApp',
         serverDir: 'server'
       })
       .on('end', done);
