@@ -1,4 +1,4 @@
-import { app } from './<%= widgetName %>';
+import { app } from '../<%= widgetName %>';
 import IDirective = ng.IDirective;
 
 module <%= widgetModule %>Directives {
@@ -14,5 +14,5 @@ module <%= widgetModule %>Directives {
   }
 }
 
-app.directives(<%= widgetModule %>Directives);
-exports = <%= widgetModule %>Directives;
+app.directive(<%= widgetModule %>Directives);
+export = <%= widgetModule %>Directives;

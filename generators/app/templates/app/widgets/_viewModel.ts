@@ -1,4 +1,4 @@
-import { app } from './<%= widgetName %>';
+import { app } from '../<%= widgetName %>';
 
 module <%= widgetModule %>VMS {
   export class <%= widgetModule %>VM {
@@ -11,4 +11,4 @@ module <%= widgetModule %>VMS {
 }
 
 app.controller(<%= widgetModule %>VMS);
-exports = <%= widgetModule %>VMS;
+export = <%= widgetModule %>VMS;

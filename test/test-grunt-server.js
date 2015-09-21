@@ -18,7 +18,7 @@ describe('grunt server folder', function() {
       })
       .on('end', function() {
         assert.fileContent([
-          ['grunt/ts.coffee', /'server\/\*\*\/\*.ts'/]
+          ['grunt/ts-tasks.coffee', /'server\/\*\*\/\*.ts'/]
         ]);
         done();
       });
@@ -36,7 +36,7 @@ describe('grunt server folder', function() {
       })
       .on('end', function() {
         assert.fileContent([
-          ['grunt/ts.coffee', /'app\/server\/\*\*\/\*.ts'/]
+          ['grunt/ts-tasks.coffee', /'app\/server\/\*\*\/\*.ts'/]
         ]);
         done();
       });

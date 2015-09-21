@@ -23,14 +23,14 @@ describe('ng-widgets:app with grunt', function() {
       'bower.json',
       'Gruntfile.js',
       'package.json',
+      'tslint.json',
       '.editorconfig',
-      '.jshintrc'
     ]);
   });
 
   it('creates the grunt config files', function() {
     assert.file([
-      'grunt/ts.coffee'
+      'grunt/ts-tasks.coffee'
     ]);
     assert.fileContent([
       ['grunt/ngtemplate.coffee', 'module: \'testing-app\'']
@@ -46,7 +46,8 @@ describe('ng-widgets:app with grunt', function() {
       ['app/widgets/testing-app/testing-app.ts', 'angular.module(\'testing-app.testing-app\', [])'],
       ['app/widgets/testing-app/src/testing-app-vm.ts', 'export class TestingAppVM'],
       ['app/widgets/testing-app/src/testing-app.ts', 'export function testingApp()'],
-      ['app/widgets/testing-app/src/testing-app.html', '<h1>testing-app</h1>']
+      ['app/widgets/testing-app/src/testing-app.html', '<h1>testing-app</h1>'],
+      ['app/widgets/testing-app/test/definitions/testing-app.step.ts', 'module testingAppTest']
     ]);
   });
 });
@@ -67,8 +68,7 @@ describe('ng-widgets:app with gulp', function () {
       'bower.json',
       'gulpfile.js',
       'package.json',
-      '.editorconfig',
-      '.jshintrc'
+      '.editorconfig'
     ]);
   });
 

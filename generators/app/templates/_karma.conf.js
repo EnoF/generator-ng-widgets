@@ -4,7 +4,7 @@ module.exports = function(config) {
     basePath: '..',
 
     // testing framework to use (jasmine/mocha/qunit/...)
-    frameworks: ['mocha', 'sinon-chai'],
+    frameworks: ['browserify', 'mocha', 'sinon-chai'],
 
     // list of files / patterns to load in the browser
     files: [
@@ -15,19 +15,8 @@ module.exports = function(config) {
       'app/bower_components/angular-route/angular-route.js',
       'app/bower_components/angular-mocks/angular-mocks.js',
       '.tmp/js/test/unit/*.js',
-      '.tmp/js/app/core/models/serializable.js',
-      '.tmp/js/app/core/models/**/*.js',
-      '.tmp/js/app/core/dao/dao.js',
-      '.tmp/js/app/core/dao/**/*.js',
-      '.tmp/js/app/core/modules/**/*.js',
-      '.tmp/js/app/core/widgets/**/src/**/*.js',
-      '.tmp/js/app/core/widgets/**/*.js',
-      '.tmp/js/app/widgets/**/src/**/*.js',
-      '.tmp/js/app/widgets/**/*.js',
-      '.tmp/js/app/app.js',
+      '.tmp/js/app/**/*.js',
       '.tmp/js/templates.js',
-      '.tmp/js/app/core/widgets/**/test/unit/*.js',
-      '.tmp/js/app/widgets/**/test/unit/*.js',
       '.tmp/test.spec.js'
     ],
 
@@ -61,7 +50,9 @@ module.exports = function(config) {
 
     preprocessors: {
       '.tmp/js/widgets/**/*.js': ['coverage'],
-      '.tmp/js/core/**/*.js': ['coverage']
+      '.tmp/js/core/**/*.js': ['coverage'],
+      '.tmp/js/app/**/*.js': ['browserify'],
+      '.tmp/js/test/**/*.js': ['browserify']
     },
 
     // optionally, configure the reporter

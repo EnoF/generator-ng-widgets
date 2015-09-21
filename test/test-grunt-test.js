@@ -22,7 +22,7 @@ describe('testing with grunt', function() {
 
   it('should create the test files', function() {
     assert.fileContent([
-      ['grunt/test.coffee', /mochaCli/]
+      ['grunt/test-tasks.coffee', /mochaCli/]
     ]);
     assert.file([
       'test/karma.conf.js',
@@ -32,13 +32,13 @@ describe('testing with grunt', function() {
 
   it('should configure the server tests accordingly', function() {
     assert.fileContent([
-      ['grunt/test.coffee', /\.tmp\/server\/\*\*\/\*.ts/]
+      ['grunt/test-tasks.coffee', /\.tmp\/server\/\*\*\/\*.ts/]
     ]);
   });
 
   it('should create the task to compile the yadda feature files', function() {
     assert.fileContent([
-      ['grunt/test.coffee', /template\:/]
+      ['grunt/test-tasks.coffee', /template\:/]
     ]);
   });
 });

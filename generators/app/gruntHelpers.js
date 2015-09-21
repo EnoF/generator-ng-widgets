@@ -7,6 +7,7 @@ var gruntHelpers = {
     this.npmInstall([
       'grunt',
       'grunt-angular-templates',
+      'grunt-browserify',
       'grunt-contrib-clean',
       'grunt-contrib-compress',
       'grunt-contrib-concat',
@@ -22,6 +23,7 @@ var gruntHelpers = {
       'grunt-ts',
       'grunt-tslint',
       'karma',
+      'karma-browserify',
       'karma-chai',
       'karma-coverage',
       'karma-mocha',
@@ -42,13 +44,13 @@ var gruntHelpers = {
 
     this.fs.copyTpl(
       this.templatePath('grunt/_ts.coffee'),
-      this.destinationPath('grunt/ts.coffee'),
+      this.destinationPath('grunt/ts-tasks.coffee'),
       this
     );
 
     this.fs.copyTpl(
       this.templatePath('grunt/_test.coffee'),
-      this.destinationPath('grunt/test.coffee'),
+      this.destinationPath('grunt/test-tasks.coffee'),
       this
     );
 

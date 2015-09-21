@@ -92,6 +92,11 @@ module.exports = yeoman.generators.Base.extend({
         this.destinationPath('app/widgets/' + this.widgetName + '/src/' + this.widgetName + '.html'),
         this
       );
+      this.fs.copyTpl(
+        this.templatePath('app/widgets/_definitions.ts'),
+        this.destinationPath('app/widgets/' + this.widgetName + '/test/definitions/' + this.widgetName + '.step.ts'),
+        this
+      );
     },
 
     buildSystem: function() {
@@ -101,16 +106,44 @@ module.exports = yeoman.generators.Base.extend({
       } else {
         gulpHelpers.setupGulp.apply(this);
       }
+    },
+
+    bowerDependencies: function() {
       this.bowerInstall([
         'angular-route',
         'angular',
         'angular-messages'
-      ]);
+      ], {
+        save: true
+      });
+    },
+
+    bowerDevDependencies: function() {
       this.bowerInstall([
         'angular-mocks',
         'jquery'
       ], {
         saveDev: true
+      });
+    },
+
+    tsdInstall: function() {
+      this.runInstall('tsd', [
+        'angular',
+        'angular-mocks',
+        'chai',
+        'express',
+        'mocha',
+        'mongoose',
+        'jquery',
+        'mime',
+        'node',
+        'serve-static',
+        'sinon',
+        'sinon-chai'
+      ], {
+        save: true,
+        overwrite: true,
       });
     },
 
@@ -120,14 +153,28 @@ module.exports = yeoman.generators.Base.extend({
         this.destinationPath('.editorconfig')
       );
       this.fs.copy(
-        this.templatePath('jshintrc'),
-        this.destinationPath('.jshintrc')
+        this.templatePath('_tslint.json'),
+        this.destinationPath('tslint.json')
+      );
+      this.fs.copy(
+        this.templatePath('_tsd.json'),
+        this.destinationPath('tsd.json')
+      );
+      this.fs.copy(
+        this.templatePath('typings/_tsd.d.ts'),
+        this.destinationPath('typings/tsd.d.ts')
       );
     }
   },
 
   install: function() {
     this.installDependencies();
+  },
+
+  end: function() {
+    this.log(yosay(
+      'Make sure to run ' + chalk.red('tsd install') + ' to install the TypeScript Definition files!'
+    ));
   }
 });
 
