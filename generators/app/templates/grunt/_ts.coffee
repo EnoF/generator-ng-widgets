@@ -1,5 +1,11 @@
 module.exports = (grunt, options) ->
-  browserify:
+  browserify__dev:
+    src: [
+      '.tmp/js/app/**/*.js'
+      '.tmp/js/test/unit/**/*.js'
+    ]
+    dest: '.tmp/js/build.js'
+  browserify__dist:
     src: [
       '.tmp/js/app/**/*.js'
     ]

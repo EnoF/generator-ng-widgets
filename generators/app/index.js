@@ -169,12 +169,6 @@ module.exports = yeoman.generators.Base.extend({
 
   install: function() {
     this.installDependencies();
-  },
-
-  end: function() {
-    this.log(yosay(
-      'Make sure to run ' + chalk.red('tsd install') + ' to install the TypeScript Definition files!'
-    ));
   }
 });
 
