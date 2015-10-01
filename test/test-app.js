@@ -47,7 +47,8 @@ describe('ng-widgets:app with grunt', function() {
       ['app/widgets/testing-app/src/testing-app-vm.ts', 'export class TestingAppVM'],
       ['app/widgets/testing-app/src/testing-app.ts', 'export function testingApp()'],
       ['app/widgets/testing-app/src/testing-app.html', '<h1>testing-app</h1>'],
-      ['app/widgets/testing-app/test/definitions/testing-app.step.ts', 'module testingAppTest']
+      ['app/widgets/testing-app/test/definitions/testing-app.step.ts', 'module testingAppTest'],
+      ['app/widgets/testing-app/test/features/loadApp.feature', 'Given I initialize widget "testing-app"']
     ]);
   });
 });

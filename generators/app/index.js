@@ -36,24 +36,35 @@ module.exports = yeoman.generators.Base.extend({
       name: 'serverDir',
       message: 'What is the directory for your server files?',
       default: 'server'
+    }, {
+      type: 'input',
+      name: 'featureUser',
+      message: 'Who is using your app?',
+      default: 'Customer'
+    }, {
+      type: 'input',
+      name: 'featureAction',
+      message: 'What is the main activity of your app?'
+    }, {
+      type: 'input',
+      name: 'featureReason',
+      message: 'Why does the user of your app wants to do this?'
     }];
 
     this.prompt(prompts, function(props) {
       this.props = props;
       // To access props later use this.props.someOption;
-
+      this.projectName = this.widgetName = this.props.featureWidget = this.props.projectName.toSnakeCase();
+      this.projectModule = this.directiveName = this.props.projectName.toCamelCase();
+      this.widgetModule = this.projectModule.toCapital();
+      this.isMainModule = true;
+      this.featureDescription = 'Loading ' + this.projectName;
       done();
     }.bind(this));
   },
 
   writing: {
     app: function() {
-      this.projectName = this.props.projectName.toSnakeCase();
-      this.projectModule = this.props.projectName.toCamelCase();
-      this.widgetName = this.projectName;
-      this.widgetModule = this.projectModule.toCapital();
-      this.directiveName = this.projectModule;
-      this.isMainModule = true;
       this.package = this.fs.copyTpl(
         this.templatePath('_package.json'),
         this.destinationPath('package.json'),
@@ -95,6 +106,11 @@ module.exports = yeoman.generators.Base.extend({
       this.fs.copyTpl(
         this.templatePath('app/widgets/_definitions.ts'),
         this.destinationPath('app/widgets/' + this.widgetName + '/test/definitions/' + this.widgetName + '.step.ts'),
+        this
+      );
+      this.fs.copyTpl(
+        this.templatePath('app/widgets/_feature.feature'),
+        this.destinationPath('app/widgets/' + this.widgetName + '/test/features/loadApp.feature'),
         this
       );
     },
