@@ -169,6 +169,21 @@ module.exports = yeoman.generators.Base.extend({
 
   install: function() {
     this.installDependencies();
+  },
+
+  test: function() {
+    this.fs.copy(
+      this.templatePath('test/_context.ts'),
+      this.destinationPath('test/unit/context.ts')
+    );
+    this.fs.copy(
+      this.templatePath('test/_globals.ts'),
+      this.destinationPath('test/unit/globals.ts')
+    );
+    this.fs.copy(
+      this.templatePath('test/_library.ts'),
+      this.destinationPath('test/unit/library.ts')
+    );
   }
 });
 
