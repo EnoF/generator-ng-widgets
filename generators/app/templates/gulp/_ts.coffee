@@ -4,8 +4,6 @@ module.exports = ->
   concat       = require 'gulp-concat'
   sourcemaps   = require 'gulp-sourcemaps'
 
-  tsconfig = ts.createProject 'tsconfig.json'
-
   compileTs = ->
     gulp.src [
       'typings/tsd.d.ts'

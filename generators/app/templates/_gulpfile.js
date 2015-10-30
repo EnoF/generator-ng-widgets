@@ -1,4 +1,5 @@
+require('coffee-script/register');
 require('gulp-task-loader')({
-  dir: ['gulp'],
-  extensions: ['.coffee']
+  dir: 'gulp',
+  exts: ['.coffee']
 });
